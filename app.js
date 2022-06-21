@@ -8,10 +8,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const {DB_USERNAME, DB_PASS, NODE_DEV, PORT} = process.env
+const {DB_URL, PORT} = process.env
 
 
-mongoose.connect(process.env.DB_URL)
+mongoose.connect(DB_URL)
          .then((result)=>{
           console.log('App is connect to atlas DB')
           initApp()
