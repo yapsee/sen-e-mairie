@@ -8,10 +8,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const {DB_USERNAME, DB_PASS, NODE_DEV, PORT} = process.env
+const {DB_URL, PORT} = process.env
 
 
-mongoose.connect(process.env.DB_URL)
+mongoose.connect(DB_URL)
          .then((result)=>{
           console.log('App is connect to atlas DB')
           initApp()
@@ -22,6 +22,21 @@ mongoose.connect(process.env.DB_URL)
 
 
 function initApp() {
+
+
+ var routes = Files.walk(__dirname + '/api/modules');           
+
+ for (var i = 0; i < routes.length; i++)                        
+   if (routes[i].indexOf('public.routes') !== -1)             
+   require(routes[i])(app);                                 
+
+// USE GUARD MIDDLEWARE
+//require('./api/modules/auth/auth.guard')(app);
+
+// IMPORT PRIVATE ROUTES
+for (var i = 0; i < routes.length; i++)
+    if (routes[i].indexOf('routes') !== -1 && routes[i].indexOf('public.routes') === -1)
+    require(routes[i])(app);
           
   app.listen(PORT,()=>{
     console.log('server listening to')
