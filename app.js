@@ -22,6 +22,21 @@ mongoose.connect(DB_URL)
 
 
 function initApp() {
+
+
+ var routes = Files.walk(__dirname + '/api/modules');           
+
+ for (var i = 0; i < routes.length; i++)                        
+   if (routes[i].indexOf('public.routes') !== -1)             
+   require(routes[i])(app);                                 
+
+// USE GUARD MIDDLEWARE
+//require('./api/modules/auth/auth.guard')(app);
+
+// IMPORT PRIVATE ROUTES
+for (var i = 0; i < routes.length; i++)
+    if (routes[i].indexOf('routes') !== -1 && routes[i].indexOf('public.routes') === -1)
+    require(routes[i])(app);
           
   app.listen(PORT,()=>{
     console.log('server listening to')
