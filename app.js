@@ -31,7 +31,7 @@ function initApp() {
    require(routes[i])(app);                                 
 
 // USE GUARD MIDDLEWARE
-//require('./api/modules/auth/auth.guard')(app);
+require('./api/modules/auth/auth.guard')(app);
 
 // IMPORT PRIVATE ROUTES
 for (var i = 0; i < routes.length; i++)

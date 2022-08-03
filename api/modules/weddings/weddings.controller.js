@@ -2,11 +2,12 @@ var weddingService = require('./weddings.service')
 var upl = require('../../../utils/upload-file');
 
 module.exports.addWedding = async (req, res) => {
+  
 
   let uploadResult;
 
   try {
-    uploadResult = await upl.handleSingleUploadFile(req, res);
+    uploadResult = await upl.handleManyUploadFile(req, res);
   } catch (e) {
     return res.status(422).json({ errors: [e.message] });
   }
