@@ -13,6 +13,16 @@ module.exports.register = async (data) => {
     return  UsersService.signUpUser(data, password );
 }
 
+
+module.exports.registerAgent = async (data) => {
+    const user = await UsersService.findUserByEmail(data.email)
+    if (user) {
+      return 'This user is already registered';
+    }
+    const password = bcrypt.hashSync(data.password, 8)
+    return  UsersService.signUpAgent(data, password );
+}
+
 module.exports.login = async ({ email, password }) => {
     let user = await UsersService.findUserByEmail(email)
     if (!user) {

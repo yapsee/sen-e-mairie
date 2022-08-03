@@ -8,4 +8,7 @@ module.exports = function(app){
   app.route('/users/signup')
   .post(Ctrl.register);
 
+  app.route('/agents/signup')
+  .post(Ctrl.registerAgent);
+
 }

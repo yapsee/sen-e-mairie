@@ -24,3 +24,15 @@ module.exports.addWedding = async (req, res) => {
     const mariage = await weddingService.addWedding(wedding_data) 
     res.send(mariage)
 };
+
+
+module.exports.listAllWeddings = async (req, res) => {
+  const mariage = await weddingService.getAll()
+  res.send(mariage)
+};
+
+
+module.exports.findOne = async (req, res) => {
+  const mariage = await weddingService.findbyRegisteNumber( req.params.registe_number)
+  res.send(mariage)
+};

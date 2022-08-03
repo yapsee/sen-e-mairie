@@ -7,6 +7,14 @@ module.exports.register = async (req, res) => {
     res.send(user);
 }
 
+
+module.exports.registerAgent = async (req, res) => {
+    const data = req.body;
+    const user = await AuthService.registerAgent(data);
+    res.send(user);
+}
+
+
 module.exports.login = async (req, res) => {
     const data = req.body;
     const session = await AuthService.login(data);

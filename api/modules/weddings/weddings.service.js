@@ -9,3 +9,16 @@ module.exports.addWedding = async (data) => {
   const result = await Wedding.create(data);
   return result;
 }
+
+module.exports.getAll = async (data) => { 
+  const result = await Wedding.find();
+  return result;
+}
+
+module.exports.findbyRegisteNumber = async (registe_number) => { 
+  const result = await Wedding.findOne({registe_number})
+  if(!result){
+    return 'Aucun acte de deces n\'est lié est à ce numero';
+  }
+  return result;
+}
