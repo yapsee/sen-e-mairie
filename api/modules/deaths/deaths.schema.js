@@ -12,7 +12,7 @@ const DeathSchema = new Schema({
     country: { type: String },
     reason: { type: String },
   
-});
+}, {timestamps: true});
 
 const deathModel = model("Deces", DeathSchema);
 

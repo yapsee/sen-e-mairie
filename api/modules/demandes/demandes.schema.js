@@ -10,7 +10,7 @@ const DemandeSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
 
 
-});
+}, {timestamps: true});
 
 const DemandeModel = model("demande", DemandeSchema);
 
