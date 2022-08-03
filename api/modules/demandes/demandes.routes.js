@@ -6,6 +6,7 @@ module.exports = function(app) {
 
   app.route('/demandes/:id')
       .put(Ctrl.traitement) 
+      .get(Ctrl.findOne)
 
    app.route('/user/demandes')
       .get(Ctrl.demandesByUser)

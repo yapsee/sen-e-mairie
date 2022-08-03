@@ -38,7 +38,7 @@ module.exports.listAllDemandes = async (req, res) => {
 module.exports.demandesByUser = async (req,res) => {
   const demandes = await demandeService.demandesByUser(req.user) 
   
-  if(demandes) {
+  if(demandes.length > 0) {
     res.send({code: 1, message: 'listes des demandes', demandes,});
   }
 
@@ -52,5 +52,11 @@ module.exports.demandesByUser = async (req,res) => {
 
 module.exports.traitement = async (req, res) => {
   const demande = await demandeService.treat(req.body, req.params.id) 
+  res.send(demande)
+};
+
+
+module.exports.findOne = async (req, res) => {
+  const demande = await demandeService.findOne(req.params.id) 
   res.send(demande)
 };

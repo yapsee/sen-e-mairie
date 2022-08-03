@@ -19,8 +19,14 @@ module.exports.treat = async (data, id) => {
 
 module.exports.demandesByUser = async (currentUser) => { 
   const result = await Demande.find({ user: currentUser})
-  if(!result){
-    return 'Aucune demande faite';
+  console.log(result);
+  if(result.length === 0) {
+    return []
   }
+  return result;
+}
+
+module.exports.findOne = async (id) => { 
+  const result = await Demande.findById(id);
   return result;
 }
